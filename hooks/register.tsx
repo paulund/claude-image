@@ -2,13 +2,13 @@ import { atom, read, update } from 'claude-code'
 import type { Register } from 'claude-code'
 
 const PNG = /\/[^\s"'`\\<>()]*\.png\b/g
-const state = atom({ plugin: 'shots', key: 'state' } as const, { paths: [] as string[], index: -1 })
+const state = atom({ plugin: 'image', key: 'state' } as const, { paths: [] as string[], index: -1 })
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     await $.command.register({
-      name: 'shot',
-      description: 'View screenshots from this session in a zoomable split (/shot N, /shot list)',
+      name: 'image',
+      description: 'View screenshots from this session in a zoomable split (/image N, /image list)',
       argumentHint: '[n|list]',
     })
     return next(e)
@@ -31,13 +31,13 @@ export const register: Register = on => {
           const merged = [...s.paths.filter(p => !fresh.includes(p)), ...fresh].slice(-50)
           return { paths: merged, index: merged.length - 1 }
         })
-        $.ui.toast(`screenshot: ${fresh[fresh.length - 1]}  (/shot to view)`)
+        $.ui.toast(`screenshot: ${fresh[fresh.length - 1]}  (/image to view)`)
       }
     }
     return ran
   }).catch(($, e, next) => next(e))
 
-  on('command.run', { command: 'shot' }, async ($, e) => {
+  on('command.run', { command: 'image' }, async ($, e) => {
     const s = await read($, state)
     const arg = (e.args ?? '').trim()
     if (arg === 'list') {

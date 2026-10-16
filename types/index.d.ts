@@ -1,7 +1,7 @@
-export type ShotsState = { paths: string[]; index: number }
+export type ImageState = { paths: string[]; index: number }
 
 declare module 'claude-code' {
   interface PluginState {
-    shots: { state: ShotsState }
+    image: { state: ImageState }
   }
 }
