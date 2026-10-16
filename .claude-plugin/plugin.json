@@ -1,0 +1,7 @@
+{
+  "name": "shots",
+  "version": "0.1.0",
+  "description": "View, zoom and pan the screenshots an agent takes, in a herdr/Ghostty split: /shot [n|list]",
+  "author": { "name": "Paul Underwood" },
+  "types": "./types/index.d.ts"
+}

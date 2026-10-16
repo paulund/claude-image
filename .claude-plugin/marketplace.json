@@ -1,0 +1,7 @@
+{
+  "name": "claude-shots",
+  "owner": { "name": "paulund" },
+  "plugins": [
+    { "name": "shots", "source": "./", "description": "View, zoom and pan agent screenshots in a herdr/Ghostty split" }
+  ]
+}
